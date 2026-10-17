@@ -16,8 +16,6 @@
             --text: #e8ecef;
             --muted: #8a969f;
             --accent: #c9a227;
-            --accent-dim: #8a7020;
-            --danger: #9b2c2c;
             --ok: #3d8f5a;
             --focus: #d4b84a;
         }
@@ -41,6 +39,41 @@
             padding: 48px 20px 72px;
         }
 
+        .topbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .lang-tabs {
+            display: inline-flex;
+            border: 1px solid var(--line);
+            background: var(--bg1);
+        }
+
+        .lang-tabs button {
+            font-family: "Barlow Condensed", sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .lang-tabs button.active {
+            background: var(--accent);
+            color: #14110a;
+        }
+
+        .lang-tabs button:not(.active):hover {
+            color: var(--text);
+            filter: none;
+        }
+
         .brand {
             font-family: "Barlow Condensed", sans-serif;
             font-weight: 800;
@@ -52,15 +85,13 @@
             color: #f2f4f6;
         }
 
-        .brand span {
-            color: var(--accent);
-        }
+        .brand span { color: var(--accent); }
 
         .tagline {
             margin: 0 0 36px;
             color: var(--muted);
             font-size: 1.05rem;
-            max-width: 36ch;
+            max-width: 40ch;
         }
 
         h2 {
@@ -245,45 +276,52 @@
 </head>
 <body>
 <div class="wrap">
-    <h1 class="brand">Resident Evil<br><span>Requiem AP</span></h1>
-    <p class="tagline">Guide rapide et générateur YAML pour le client RE9 Archipelago.</p>
+    <div class="topbar">
+        <div class="lang-tabs" role="tablist" aria-label="Language">
+            <button type="button" role="tab" data-lang="fr" class="active" aria-selected="true">FR</button>
+            <button type="button" role="tab" data-lang="en" aria-selected="false">EN</button>
+        </div>
+    </div>
 
-    <h2>Télécharger le client</h2>
+    <h1 class="brand">Resident Evil<br><span>Requiem AP</span></h1>
+    <p class="tagline" data-i18n="tagline"></p>
+
+    <h2 data-i18n="h_download"></h2>
     <div class="step">
         <div class="download-box">
             <div class="info">
                 <strong>RE9 AP Client</strong>
-                <p>Launcher + scripts Archipelago pour Resident Evil Requiem.</p>
-                <p class="hint" id="clientVersionHint">Colle l’URL du client dans le champ ci-dessous (GitHub, Nexus, Drive…).</p>
+                <p data-i18n="client_desc"></p>
+                <p class="hint" id="clientVersionHint"></p>
             </div>
-            <a class="btn disabled" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer">Télécharger</a>
+            <a class="btn disabled" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
         </div>
-        <label for="clientUrl">Lien de téléchargement du client</label>
-        <input id="clientUrl" type="url" placeholder="https://…/RE9.AP.Client.zip" autocomplete="off">
-        <label for="clientVersion">Version affichée (optionnel)</label>
-        <input id="clientVersion" type="text" placeholder="ex. 1.0.50" autocomplete="off">
+        <label for="clientUrl" data-i18n="label_client_url"></label>
+        <input id="clientUrl" type="url" data-i18n-placeholder="ph_client_url" autocomplete="off">
+        <label for="clientVersion" data-i18n="label_client_version"></label>
+        <input id="clientVersion" type="text" data-i18n-placeholder="ph_client_version" autocomplete="off">
     </div>
 
-    <h2>1. Installation</h2>
+    <h2 data-i18n="h_install"></h2>
     <div class="step">
-        <p>Installe <strong>Resident Evil Requiem</strong> via Steam, télécharge le client ci-dessus, puis lance <code>RE9.AP.Launcher.exe</code>.</p>
-        <p class="hint">Le launcher pose REFramework + les scripts Lua ArchipelagoRE9. Relance le jeu après une mise à jour de patch.</p>
+        <p data-i18n-html="install_p"></p>
+        <p class="hint" data-i18n="install_hint"></p>
     </div>
 
-    <h2>2. Options YAML</h2>
+    <h2 data-i18n="h_yaml"></h2>
     <div class="step">
         <div class="row">
             <div>
-                <label for="playerName">Nom du slot (16 car. max)</label>
+                <label for="playerName" data-i18n="label_slot"></label>
                 <input id="playerName" type="text" maxlength="16" value="Player" autocomplete="off">
             </div>
             <div>
-                <label for="description">Description</label>
+                <label for="description" data-i18n="label_description"></label>
                 <input id="description" type="text" value="RE9 AP config">
             </div>
         </div>
 
-        <label for="difficulty">Difficulté (doit matcher ta save)</label>
+        <label for="difficulty" data-i18n="label_difficulty"></label>
         <select id="difficulty">
             <option value="casual">Casual</option>
             <option value="modern" selected>Modern</option>
@@ -295,14 +333,14 @@
             <div>
                 <label for="keyItems">Key Items</label>
                 <select id="keyItems">
-                    <option value="vanilla" selected>Vanilla (sûr)</option>
+                    <option value="vanilla" data-i18n="opt_vanilla">Vanilla</option>
                     <option value="shuffled">Shuffled</option>
                 </select>
             </div>
             <div>
                 <label for="flagItems">Flag Items</label>
                 <select id="flagItems">
-                    <option value="vanilla" selected>Vanilla (sûr)</option>
+                    <option value="vanilla" data-i18n="opt_vanilla">Vanilla</option>
                     <option value="shuffled">Shuffled</option>
                 </select>
             </div>
@@ -316,7 +354,7 @@
             <div>
                 <label for="deathLink">Death Link</label>
                 <select id="deathLink">
-                    <option value="false" selected>Off</option>
+                    <option value="false">Off</option>
                     <option value="true">On</option>
                 </select>
             </div>
@@ -341,24 +379,22 @@
         </div>
 
         <div class="actions">
-            <button type="button" id="generateBtn">Générer le YAML</button>
-            <button type="button" class="secondary" id="copyBtn">Copier</button>
-            <button type="button" class="secondary" id="downloadBtn">Télécharger .yaml</button>
+            <button type="button" id="generateBtn" data-i18n="btn_generate"></button>
+            <button type="button" class="secondary" id="copyBtn" data-i18n="btn_copy"></button>
+            <button type="button" class="secondary" id="downloadBtn" data-i18n="btn_dl_yaml"></button>
         </div>
 
-        <label for="preview">Aperçu</label>
+        <label for="preview" data-i18n="label_preview"></label>
         <textarea id="preview" readonly spellcheck="false"></textarea>
     </div>
 
-    <h2>3. Connexion in-game</h2>
+    <h2 data-i18n="h_connect"></h2>
     <div class="step">
-        <p>Génère le multiworld avec Archipelago (apworld <strong>Resident Evil Requiem</strong>), puis dans le jeu ouvre l’UI RE9 AP :</p>
-        <p class="hint">Serveur · Nom du slot · Mot de passe → <strong>Enregistrer et connecter</strong>. La difficulté YAML doit être celle de ta save.</p>
+        <p data-i18n-html="connect_p"></p>
+        <p class="hint" data-i18n-html="connect_hint"></p>
     </div>
 
-    <p class="meta">
-        Client cible : dossier <code>Resident Evil 9 AP</code> · jeu AP : <code>Resident Evil Requiem</code>
-    </p>
+    <p class="meta" data-i18n-html="meta"></p>
 </div>
 
 <div class="toast" id="toast" role="status"></div>
@@ -368,10 +404,107 @@
     const $ = (id) => document.getElementById(id);
     const toastEl = $("toast");
     let toastTimer;
+    let lang = localStorage.getItem("re9ap_lang") || "fr";
 
-    // Client privé : https://github.com/LechapelierHD/Re9-archipelago (releases)
     const CLIENT_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago/releases/download/v1.0.50/RE9-AP-Client-1.0.50.zip";
     const CLIENT_VERSION = "1.0.50";
+
+    const I18N = {
+        fr: {
+            title: "RE9 AP — Configuration",
+            tagline: "Guide rapide et générateur YAML pour le client RE9 Archipelago.",
+            h_download: "Télécharger le client",
+            client_desc: "Launcher + scripts Archipelago pour Resident Evil Requiem.",
+            hint_paste: "Colle l’URL du client dans le champ ci-dessous (GitHub, Nexus, Drive…).",
+            hint_ready: "Lien prêt — clic sur Télécharger.",
+            hint_version: "Version {v} — clic sur Télécharger.",
+            btn_download: "Télécharger",
+            label_client_url: "Lien de téléchargement du client",
+            label_client_version: "Version affichée (optionnel)",
+            ph_client_url: "https://…/RE9.AP.Client.zip",
+            ph_client_version: "ex. 1.0.50",
+            h_install: "1. Installation",
+            install_p: "Installe <strong>Resident Evil Requiem</strong> via Steam, télécharge le client ci-dessus, puis lance <code>RE9.AP.Launcher.exe</code>.",
+            install_hint: "Le launcher pose REFramework + les scripts Lua ArchipelagoRE9. Relance le jeu après une mise à jour de patch.",
+            h_yaml: "2. Options YAML",
+            label_slot: "Nom du slot (16 car. max)",
+            label_description: "Description",
+            label_difficulty: "Difficulté (doit matcher ta save)",
+            opt_vanilla: "Vanilla (sûr)",
+            btn_generate: "Générer le YAML",
+            btn_copy: "Copier",
+            btn_dl_yaml: "Télécharger .yaml",
+            label_preview: "Aperçu",
+            h_connect: "3. Connexion in-game",
+            connect_p: "Génère le multiworld avec Archipelago (apworld <strong>Resident Evil Requiem</strong>), puis dans le jeu ouvre l’UI RE9 AP :",
+            connect_hint: "Serveur · Nom du slot · Mot de passe → <strong>Enregistrer et connecter</strong>. La difficulté YAML doit être celle de ta save.",
+            meta: "Client cible : dossier <code>Resident Evil 9 AP</code> · jeu AP : <code>Resident Evil Requiem</code>",
+            toast_gen: "YAML généré pour Resident Evil Requiem",
+            toast_copy: "YAML copié",
+            toast_dl: "Fichier .yaml téléchargé",
+        },
+        en: {
+            title: "RE9 AP — Setup",
+            tagline: "Quick guide and YAML generator for the RE9 Archipelago client.",
+            h_download: "Download the client",
+            client_desc: "Launcher + Archipelago scripts for Resident Evil Requiem.",
+            hint_paste: "Paste the client URL in the field below (GitHub, Nexus, Drive…).",
+            hint_ready: "Link ready — click Download.",
+            hint_version: "Version {v} — click Download.",
+            btn_download: "Download",
+            label_client_url: "Client download link",
+            label_client_version: "Displayed version (optional)",
+            ph_client_url: "https://…/RE9.AP.Client.zip",
+            ph_client_version: "e.g. 1.0.50",
+            h_install: "1. Install",
+            install_p: "Install <strong>Resident Evil Requiem</strong> via Steam, download the client above, then run <code>RE9.AP.Launcher.exe</code>.",
+            install_hint: "The launcher installs REFramework + ArchipelagoRE9 Lua scripts. Restart the game after a patch update.",
+            h_yaml: "2. YAML options",
+            label_slot: "Slot name (16 chars max)",
+            label_description: "Description",
+            label_difficulty: "Difficulty (must match your save)",
+            opt_vanilla: "Vanilla (safe)",
+            btn_generate: "Generate YAML",
+            btn_copy: "Copy",
+            btn_dl_yaml: "Download .yaml",
+            label_preview: "Preview",
+            h_connect: "3. In-game connection",
+            connect_p: "Generate the multiworld with Archipelago (<strong>Resident Evil Requiem</strong> apworld), then open the RE9 AP UI in-game:",
+            connect_hint: "Server · Slot name · Password → <strong>Save and connect</strong>. YAML difficulty must match your save.",
+            meta: "Target client folder: <code>Resident Evil 9 AP</code> · AP game: <code>Resident Evil Requiem</code>",
+            toast_gen: "YAML generated for Resident Evil Requiem",
+            toast_copy: "YAML copied",
+            toast_dl: "YAML file downloaded",
+        },
+    };
+
+    function t(key) {
+        return (I18N[lang] && I18N[lang][key]) || I18N.fr[key] || key;
+    }
+
+    function applyLang() {
+        document.documentElement.lang = lang;
+        document.title = t("title");
+
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+            el.textContent = t(el.getAttribute("data-i18n"));
+        });
+        document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+            el.innerHTML = t(el.getAttribute("data-i18n-html"));
+        });
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+            el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
+        });
+
+        document.querySelectorAll(".lang-tabs button").forEach((btn) => {
+            const active = btn.getAttribute("data-lang") === lang;
+            btn.classList.toggle("active", active);
+            btn.setAttribute("aria-selected", active ? "true" : "false");
+        });
+
+        syncClientDownload();
+        localStorage.setItem("re9ap_lang", lang);
+    }
 
     function toast(msg) {
         toastEl.textContent = msg;
@@ -389,16 +522,26 @@
 
         btn.href = valid ? url : "#";
         btn.classList.toggle("disabled", !valid);
-        hint.textContent = valid
-            ? (version ? `Version ${version} — clic sur Télécharger.` : "Lien prêt — clic sur Télécharger.")
-            : "Colle l’URL du client dans le champ ci-dessous (GitHub, Nexus, Drive…).";
+        if (!valid) {
+            hint.textContent = t("hint_paste");
+        } else if (version) {
+            hint.textContent = t("hint_version").replace("{v}", version);
+        } else {
+            hint.textContent = t("hint_ready");
+        }
     }
+
+    document.querySelectorAll(".lang-tabs button").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            lang = btn.getAttribute("data-lang");
+            applyLang();
+        });
+    });
 
     if (CLIENT_DOWNLOAD_URL) $("clientUrl").value = CLIENT_DOWNLOAD_URL;
     if (CLIENT_VERSION) $("clientVersion").value = CLIENT_VERSION;
     $("clientUrl").addEventListener("input", syncClientDownload);
     $("clientVersion").addEventListener("input", syncClientDownload);
-    syncClientDownload();
 
     function choiceBlock(selected, options) {
         return options.map((opt) =>
@@ -458,18 +601,18 @@ ${choiceBlock(flagItems, ["vanilla", "shuffled"])}
 
     $("generateBtn").addEventListener("click", () => {
         refresh();
-        toast("YAML généré pour Resident Evil Requiem");
+        toast(t("toast_gen"));
     });
 
     $("copyBtn").addEventListener("click", async () => {
         refresh();
         try {
             await navigator.clipboard.writeText($("preview").value);
-            toast("YAML copié");
+            toast(t("toast_copy"));
         } catch {
             $("preview").select();
             document.execCommand("copy");
-            toast("YAML copié");
+            toast(t("toast_copy"));
         }
     });
 
@@ -482,7 +625,7 @@ ${choiceBlock(flagItems, ["vanilla", "shuffled"])}
         a.download = `${name.replace(/[^\w\-]+/g, "_")}_RE9.yaml`;
         a.click();
         URL.revokeObjectURL(a.href);
-        toast("Fichier .yaml téléchargé");
+        toast(t("toast_dl"));
     });
 
     [
@@ -490,6 +633,7 @@ ${choiceBlock(flagItems, ["vanilla", "shuffled"])}
         "enemyDrops", "deathLink", "accessibility", "balancing"
     ].forEach((id) => $(id).addEventListener("input", refresh));
 
+    applyLang();
     refresh();
 })();
 </script>
