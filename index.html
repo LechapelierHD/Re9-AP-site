@@ -414,6 +414,53 @@
         <p class="hint" data-i18n-html="connect_hint"></p>
     </div>
 
+    <h2 data-i18n="h_bug"></h2>
+    <div class="step">
+        <p data-i18n="bug_intro"></p>
+        <p class="hint" data-i18n-html="bug_hint"></p>
+
+        <label for="bugType" data-i18n="label_bug_type"></label>
+        <select id="bugType">
+            <option value="crash" data-i18n="bug_type_crash">Crash</option>
+            <option value="connect" data-i18n="bug_type_connect">Connexion</option>
+            <option value="check" data-i18n="bug_type_check">Check / objet</option>
+            <option value="warp" data-i18n="bug_type_warp">Warp</option>
+            <option value="other" data-i18n="bug_type_other" selected>Autre</option>
+        </select>
+
+        <label for="bugSummary" data-i18n="label_bug_summary"></label>
+        <input id="bugSummary" type="text" data-i18n-placeholder="ph_bug_summary" maxlength="120" autocomplete="off">
+
+        <label for="bugSteps" data-i18n="label_bug_steps"></label>
+        <textarea id="bugSteps" rows="4" data-i18n-placeholder="ph_bug_steps" style="margin-top:0;min-height:90px;white-space:pre-wrap;"></textarea>
+
+        <label for="bugExpected" data-i18n="label_bug_expected"></label>
+        <textarea id="bugExpected" rows="2" data-i18n-placeholder="ph_bug_expected" style="margin-top:0;min-height:60px;white-space:pre-wrap;"></textarea>
+
+        <label for="bugActual" data-i18n="label_bug_actual"></label>
+        <textarea id="bugActual" rows="2" data-i18n-placeholder="ph_bug_actual" style="margin-top:0;min-height:60px;white-space:pre-wrap;"></textarea>
+
+        <div class="row">
+            <div>
+                <label for="bugClientVer" data-i18n="label_bug_client"></label>
+                <input id="bugClientVer" type="text" autocomplete="off">
+            </div>
+            <div>
+                <label for="bugOs" data-i18n="label_bug_os"></label>
+                <input id="bugOs" type="text" data-i18n-placeholder="ph_bug_os" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="actions">
+            <button type="button" id="bugGenerateBtn" data-i18n="btn_bug_generate"></button>
+            <button type="button" class="secondary" id="bugCopyBtn" data-i18n="btn_bug_copy"></button>
+            <button type="button" class="secondary" id="bugDlBtn" data-i18n="btn_bug_dl"></button>
+        </div>
+
+        <label for="bugPreview" data-i18n="label_bug_preview"></label>
+        <textarea id="bugPreview" readonly spellcheck="false" style="min-height:220px;white-space:pre-wrap;"></textarea>
+    </div>
+
     <p class="meta" data-i18n-html="meta"></p>
 </div>
 
@@ -467,6 +514,33 @@
             h_connect: "3. Connexion in-game",
             connect_p: "Génère le multiworld avec Archipelago (apworld <strong>Resident Evil Requiem</strong>), puis dans le jeu ouvre l’UI RE9 AP :",
             connect_hint: "Serveur · Nom du slot · Mot de passe → <strong>Enregistrer et connecter</strong>. La difficulté YAML doit être celle de ta save.",
+            h_bug: "4. Bug ou problème ?",
+            bug_intro: "Si quelque chose plante, un check ne part pas, ou la connexion échoue : génère un rapport et envoie-le au développeur.",
+            bug_hint: "Joins si possible le journal <code>re2_framework_log.txt</code> (dossier du jeu) — lignes <code>[RE9 AP]</code>.",
+            label_bug_type: "Type de problème",
+            bug_type_crash: "Crash / freeze",
+            bug_type_connect: "Connexion AP",
+            bug_type_check: "Check / objet",
+            bug_type_warp: "Warp / machine",
+            bug_type_other: "Autre",
+            label_bug_summary: "Résumé (court)",
+            ph_bug_summary: "ex. Crash en ouvrant le coffre",
+            label_bug_steps: "Étapes pour reproduire",
+            ph_bug_steps: "1. …\n2. …\n3. …",
+            label_bug_expected: "Comportement attendu",
+            ph_bug_expected: "Ce qui devrait se passer",
+            label_bug_actual: "Comportement observé",
+            ph_bug_actual: "Ce qui s’est passé à la place",
+            label_bug_client: "Version client",
+            label_bug_os: "Système (optionnel)",
+            ph_bug_os: "ex. Windows 11",
+            btn_bug_generate: "Générer le rapport",
+            btn_bug_copy: "Copier le rapport",
+            btn_bug_dl: "Télécharger .txt",
+            label_bug_preview: "Rapport généré",
+            toast_bug: "Rapport de bug généré",
+            toast_bug_copy: "Rapport copié",
+            toast_bug_dl: "Rapport téléchargé",
             meta: "Client cible : dossier <code>Resident Evil 9 AP</code> · jeu AP : <code>Resident Evil Requiem</code>",
             toast_gen: "YAML généré pour Resident Evil Requiem",
             toast_copy: "YAML copié",
@@ -500,6 +574,33 @@
             h_connect: "3. In-game connection",
             connect_p: "Generate the multiworld with Archipelago (<strong>Resident Evil Requiem</strong> apworld), then open the RE9 AP UI in-game:",
             connect_hint: "Server · Slot name · Password → <strong>Save and connect</strong>. YAML difficulty must match your save.",
+            h_bug: "4. Bug or problem?",
+            bug_intro: "If something crashes, a check doesn't send, or connection fails: generate a report and send it to the developer.",
+            bug_hint: "If possible, attach <code>re2_framework_log.txt</code> (game folder) — lines starting with <code>[RE9 AP]</code>.",
+            label_bug_type: "Issue type",
+            bug_type_crash: "Crash / freeze",
+            bug_type_connect: "AP connection",
+            bug_type_check: "Check / item",
+            bug_type_warp: "Warp / typewriter",
+            bug_type_other: "Other",
+            label_bug_summary: "Short summary",
+            ph_bug_summary: "e.g. Crash when opening item box",
+            label_bug_steps: "Steps to reproduce",
+            ph_bug_steps: "1. …\n2. …\n3. …",
+            label_bug_expected: "Expected behavior",
+            ph_bug_expected: "What should happen",
+            label_bug_actual: "Actual behavior",
+            ph_bug_actual: "What happened instead",
+            label_bug_client: "Client version",
+            label_bug_os: "OS (optional)",
+            ph_bug_os: "e.g. Windows 11",
+            btn_bug_generate: "Generate report",
+            btn_bug_copy: "Copy report",
+            btn_bug_dl: "Download .txt",
+            label_bug_preview: "Generated report",
+            toast_bug: "Bug report generated",
+            toast_bug_copy: "Report copied",
+            toast_bug_dl: "Report downloaded",
             meta: "Target client folder: <code>Resident Evil 9 AP</code> · AP game: <code>Resident Evil Requiem</code>",
             toast_gen: "YAML generated for Resident Evil Requiem",
             toast_copy: "YAML copied",
@@ -532,6 +633,10 @@
         });
 
         syncClientDownload();
+        // refresh select option labels that use data-i18n
+        document.querySelectorAll("#bugType option[data-i18n]").forEach((el) => {
+            el.textContent = t(el.getAttribute("data-i18n"));
+        });
         localStorage.setItem("re9ap_lang", lang);
     }
 
@@ -657,8 +762,114 @@ ${choiceBlock(flagItems, ["vanilla", "shuffled"])}
         "enemyDrops", "deathLink", "accessibility", "balancing"
     ].forEach((id) => $(id).addEventListener("input", refresh));
 
+    function buildBugReport() {
+        const typeKey = "bug_type_" + ($("bugType").value || "other");
+        const typeLabel = t(typeKey);
+        const summary = ($("bugSummary").value || "").trim() || (lang === "en" ? "(no summary)" : "(pas de résumé)");
+        const steps = ($("bugSteps").value || "").trim() || "-";
+        const expected = ($("bugExpected").value || "").trim() || "-";
+        const actual = ($("bugActual").value || "").trim() || "-";
+        const clientVer = ($("bugClientVer").value || CLIENT_VERSION || "?").trim();
+        const os = ($("bugOs").value || "").trim() || "-";
+        const slot = ($("playerName").value || "").trim() || "-";
+        const difficulty = $("difficulty").value;
+        const when = new Date().toISOString();
+
+        if (lang === "en") {
+            return [
+                "=== RE9 AP BUG REPORT ===",
+                "Date: " + when,
+                "Client: " + clientVer,
+                "OS: " + os,
+                "Type: " + typeLabel,
+                "Slot: " + slot,
+                "Difficulty: " + difficulty,
+                "",
+                "Summary:",
+                summary,
+                "",
+                "Steps to reproduce:",
+                steps,
+                "",
+                "Expected:",
+                expected,
+                "",
+                "Actual:",
+                actual,
+                "",
+                "Please attach re2_framework_log.txt (game folder) if available — look for [RE9 AP] lines.",
+                "=========================",
+            ].join("\n");
+        }
+
+        return [
+            "=== RAPPORT DE BUG RE9 AP ===",
+            "Date : " + when,
+            "Client : " + clientVer,
+            "OS : " + os,
+            "Type : " + typeLabel,
+            "Slot : " + slot,
+            "Difficulté : " + difficulty,
+            "",
+            "Résumé :",
+            summary,
+            "",
+            "Étapes pour reproduire :",
+            steps,
+            "",
+            "Attendu :",
+            expected,
+            "",
+            "Observé :",
+            actual,
+            "",
+            "Joindre si possible re2_framework_log.txt (dossier du jeu) — lignes [RE9 AP].",
+            "=============================",
+        ].join("\n");
+    }
+
+    function refreshBug() {
+        $("bugPreview").value = buildBugReport();
+    }
+
+    async function copyText(text, toastKey) {
+        try {
+            await navigator.clipboard.writeText(text);
+            toast(t(toastKey));
+        } catch {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+            toast(t(toastKey));
+        }
+    }
+
+    $("bugClientVer").value = CLIENT_VERSION;
+    $("bugGenerateBtn").addEventListener("click", () => {
+        refreshBug();
+        toast(t("toast_bug"));
+    });
+    $("bugCopyBtn").addEventListener("click", () => {
+        refreshBug();
+        copyText($("bugPreview").value, "toast_bug_copy");
+    });
+    $("bugDlBtn").addEventListener("click", () => {
+        refreshBug();
+        const blob = new Blob([$("bugPreview").value], { type: "text/plain;charset=utf-8" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "RE9_AP_bug_report.txt";
+        a.click();
+        URL.revokeObjectURL(a.href);
+        toast(t("toast_bug_dl"));
+    });
+
     applyLang();
     refresh();
+    refreshBug();
 })();
 </script>
 </body>
