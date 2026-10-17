@@ -314,18 +314,6 @@
         <img src="https://visitor-badge.laobi.icu/badge?page_id=Lechapelier&amp;left_text=visitors" alt="visitor badge">
     </div>
 
-    <h2 data-i18n="h_source"></h2>
-    <div class="step">
-        <div class="download-box">
-            <div class="info">
-                <strong>RE9 AP Source code</strong>
-                <p data-i18n="source_desc"></p>
-                <p class="hint" id="sourceVersionHint"></p>
-            </div>
-            <a class="btn" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
-        </div>
-    </div>
-
     <h2 data-i18n="h_download"></h2>
     <div class="step">
         <div class="download-box">
@@ -335,6 +323,18 @@
                 <p class="hint" id="clientVersionHint"></p>
             </div>
             <a class="btn" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
+        </div>
+    </div>
+
+    <h2 data-i18n="h_source"></h2>
+    <div class="step">
+        <div class="download-box">
+            <div class="info">
+                <strong>RE9 AP Source code</strong>
+                <p data-i18n="source_desc"></p>
+                <p class="hint" id="sourceVersionHint"></p>
+            </div>
+            <a class="btn" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
         </div>
     </div>
 
@@ -457,8 +457,8 @@
             btn.setAttribute("aria-selected", active ? "true" : "false");
         });
 
-        syncSourceDownload();
         syncClientDownload();
+        syncSourceDownload();
         localStorage.setItem("re9ap_lang", lang);
     }
 
