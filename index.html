@@ -74,6 +74,14 @@
             filter: none;
         }
 
+        .hero-logo {
+            display: block;
+            width: min(280px, 72vw);
+            height: auto;
+            margin: 0 auto 18px;
+            filter: drop-shadow(0 10px 28px rgba(0, 0, 0, 0.55));
+        }
+
         .brand {
             font-family: "Barlow Condensed", sans-serif;
             font-weight: 800;
@@ -83,9 +91,12 @@
             text-transform: uppercase;
             margin: 0 0 8px;
             color: #f2f4f6;
+            text-align: center;
         }
 
         .brand span { color: var(--accent); }
+
+        .tagline { text-align: center; margin-left: auto; margin-right: auto; }
 
         .tagline {
             margin: 0 0 36px;
@@ -283,6 +294,7 @@
         </div>
     </div>
 
+    <img class="hero-logo" src="assets/logo.png" alt="Resident Evil Requiem AP" width="280" height="280">
     <h1 class="brand">Resident Evil<br><span>Requiem AP</span></h1>
     <p class="tagline" data-i18n="tagline"></p>
 
