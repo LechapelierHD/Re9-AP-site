@@ -318,12 +318,8 @@
                 <p data-i18n="client_desc"></p>
                 <p class="hint" id="clientVersionHint"></p>
             </div>
-            <a class="btn disabled" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
+            <a class="btn" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
         </div>
-        <label for="clientUrl" data-i18n="label_client_url"></label>
-        <input id="clientUrl" type="url" data-i18n-placeholder="ph_client_url" autocomplete="off">
-        <label for="clientVersion" data-i18n="label_client_version"></label>
-        <input id="clientVersion" type="text" data-i18n-placeholder="ph_client_version" autocomplete="off">
     </div>
 
     <h2 data-i18n="h_install"></h2>
@@ -448,9 +444,9 @@
             tagline: "Guide rapide et générateur YAML pour le client RE9 Archipelago.",
             h_download: "Télécharger le client",
             client_desc: "Launcher + scripts Archipelago pour Resident Evil Requiem.",
-            hint_paste: "Colle l’URL du client dans le champ ci-dessous (GitHub, Nexus, Drive…).",
-            hint_ready: "Lien prêt — clic sur Télécharger.",
-            hint_version: "Version {v} — clic sur Télécharger.",
+            hint_paste: "Client non configuré pour le moment.",
+            hint_ready: "Clique sur Télécharger pour obtenir le client.",
+            hint_version: "Version {v}",
             btn_download: "Télécharger",
             label_client_url: "Lien de téléchargement du client",
             label_client_version: "Version affichée (optionnel)",
@@ -481,9 +477,9 @@
             tagline: "Quick guide and YAML generator for the RE9 Archipelago client.",
             h_download: "Download the client",
             client_desc: "Launcher + Archipelago scripts for Resident Evil Requiem.",
-            hint_paste: "Paste the client URL in the field below (GitHub, Nexus, Drive…).",
-            hint_ready: "Link ready — click Download.",
-            hint_version: "Version {v} — click Download.",
+            hint_paste: "Client not configured yet.",
+            hint_ready: "Click Download to get the client.",
+            hint_version: "Version {v}",
             btn_download: "Download",
             label_client_url: "Client download link",
             label_client_version: "Displayed version (optional)",
@@ -547,10 +543,10 @@
     }
 
     function syncClientDownload() {
-        const url = ($("clientUrl").value || "").trim();
-        const version = ($("clientVersion").value || "").trim();
         const btn = $("clientDownloadBtn");
         const hint = $("clientVersionHint");
+        const url = (CLIENT_DOWNLOAD_URL || "").trim();
+        const version = (CLIENT_VERSION || "").trim();
         const valid = /^https?:\/\//i.test(url);
 
         btn.href = valid ? url : "#";
@@ -570,11 +566,6 @@
             applyLang();
         });
     });
-
-    if (CLIENT_DOWNLOAD_URL) $("clientUrl").value = CLIENT_DOWNLOAD_URL;
-    if (CLIENT_VERSION) $("clientVersion").value = CLIENT_VERSION;
-    $("clientUrl").addEventListener("input", syncClientDownload);
-    $("clientVersion").addEventListener("input", syncClientDownload);
 
     function choiceBlock(selected, options) {
         return options.map((opt) =>
