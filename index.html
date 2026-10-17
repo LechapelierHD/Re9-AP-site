@@ -252,16 +252,6 @@
             margin-bottom: 4px;
         }
 
-        #preview {
-            margin-top: 14px;
-            min-height: 180px;
-            font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-            font-size: 0.82rem;
-            line-height: 1.45;
-            white-space: pre;
-            resize: vertical;
-        }
-
         .toast {
             position: fixed;
             left: 50%;
@@ -328,86 +318,6 @@
         <p class="hint" data-i18n="install_hint"></p>
     </div>
 
-    <h2 data-i18n="h_yaml"></h2>
-    <div class="step">
-        <div class="row">
-            <div>
-                <label for="playerName" data-i18n="label_slot"></label>
-                <input id="playerName" type="text" maxlength="16" value="Player" autocomplete="off">
-            </div>
-            <div>
-                <label for="description" data-i18n="label_description"></label>
-                <input id="description" type="text" value="RE9 AP config">
-            </div>
-        </div>
-
-        <label for="difficulty" data-i18n="label_difficulty"></label>
-        <select id="difficulty">
-            <option value="casual">Casual</option>
-            <option value="modern" selected>Modern</option>
-            <option value="classic">Classic</option>
-            <option value="insanity">Insanity</option>
-        </select>
-
-        <div class="row">
-            <div>
-                <label for="keyItems">Key Items</label>
-                <select id="keyItems">
-                    <option value="vanilla" data-i18n="opt_vanilla">Vanilla</option>
-                    <option value="shuffled">Shuffled</option>
-                </select>
-            </div>
-            <div>
-                <label for="flagItems">Flag Items</label>
-                <select id="flagItems">
-                    <option value="vanilla" data-i18n="opt_vanilla">Vanilla</option>
-                    <option value="shuffled">Shuffled</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div>
-                <label for="enemyDrops">Enemy Drops (0–50)</label>
-                <input id="enemyDrops" type="number" min="0" max="50" value="15">
-            </div>
-            <div>
-                <label for="deathLink">Death Link</label>
-                <select id="deathLink">
-                    <option value="false">Off</option>
-                    <option value="true">On</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div>
-                <label for="accessibility">Accessibility</label>
-                <select id="accessibility">
-                    <option value="full" selected>Full</option>
-                    <option value="minimal">Minimal</option>
-                </select>
-            </div>
-            <div>
-                <label for="balancing">Progression Balancing</label>
-                <select id="balancing">
-                    <option value="disabled">Disabled (0)</option>
-                    <option value="normal" selected>Normal (50)</option>
-                    <option value="extreme">Extreme (99)</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="actions">
-            <button type="button" id="generateBtn" data-i18n="btn_generate"></button>
-            <button type="button" class="secondary" id="copyBtn" data-i18n="btn_copy"></button>
-            <button type="button" class="secondary" id="downloadBtn" data-i18n="btn_dl_yaml"></button>
-        </div>
-
-        <label for="preview" data-i18n="label_preview"></label>
-        <textarea id="preview" readonly spellcheck="false"></textarea>
-    </div>
-
     <h2 data-i18n="h_connect"></h2>
     <div class="step">
         <p data-i18n-html="connect_p"></p>
@@ -447,75 +357,43 @@
     const I18N = {
         fr: {
             title: "RE9 AP — Configuration",
-            tagline: "Guide rapide et générateur YAML pour le client RE9 Archipelago.",
+            tagline: "Guide rapide pour le client RE9 Archipelago.",
             h_download: "Télécharger le client",
             client_desc: "Launcher + scripts Archipelago pour Resident Evil Requiem.",
             hint_paste: "Client non configuré pour le moment.",
             hint_ready: "Clique sur Télécharger pour obtenir le client.",
             hint_version: "Version {v}",
             btn_download: "Télécharger",
-            label_client_url: "Lien de téléchargement du client",
-            label_client_version: "Version affichée (optionnel)",
-            ph_client_url: "https://…/RE9.AP.Client.zip",
-            ph_client_version: "ex. 1.0.50",
             h_install: "1. Installation",
             install_p: "Installe <strong>Resident Evil Requiem</strong> via Steam, télécharge le client ci-dessus, puis lance <code>RE9.AP.Launcher.exe</code>.",
             install_hint: "Le launcher pose REFramework + les scripts Lua ArchipelagoRE9. Relance le jeu après une mise à jour de patch.",
-            h_yaml: "2. Options YAML",
-            label_slot: "Nom du slot (16 car. max)",
-            label_description: "Description",
-            label_difficulty: "Difficulté (doit matcher ta save)",
-            opt_vanilla: "Vanilla (sûr)",
-            btn_generate: "Générer le YAML",
-            btn_copy: "Copier",
-            btn_dl_yaml: "Télécharger .yaml",
-            label_preview: "Aperçu",
-            h_connect: "3. Connexion in-game",
+            h_connect: "2. Connexion in-game",
             connect_p: "Génère le multiworld avec Archipelago (apworld <strong>Resident Evil Requiem</strong>), puis dans le jeu ouvre l’UI RE9 AP :",
             connect_hint: "Serveur · Nom du slot · Mot de passe → <strong>Enregistrer et connecter</strong>. La difficulté YAML doit être celle de ta save.",
-            h_bug: "4. Bug ou problème ?",
+            h_bug: "3. Bug ou problème ?",
             bug_intro: "En cas de bug, crash ou autre problème, envoyez-moi votre <strong>RE9-bugreport</strong> avec une description claire (ce que vous avez fait + ce qui s’est passé).",
             bug_hint: "Joignez si possible le journal <code>re2_framework_log.txt</code> (dossier du jeu) — lignes <code>[RE9 AP]</code>.",
             meta: "Client cible : dossier <code>Resident Evil 9 AP</code> · jeu AP : <code>Resident Evil Requiem</code>",
-            toast_gen: "YAML généré pour Resident Evil Requiem",
-            toast_copy: "YAML copié",
-            toast_dl: "Fichier .yaml téléchargé",
         },
         en: {
             title: "RE9 AP — Setup",
-            tagline: "Quick guide and YAML generator for the RE9 Archipelago client.",
+            tagline: "Quick guide for the RE9 Archipelago client.",
             h_download: "Download the client",
             client_desc: "Launcher + Archipelago scripts for Resident Evil Requiem.",
             hint_paste: "Client not configured yet.",
             hint_ready: "Click Download to get the client.",
             hint_version: "Version {v}",
             btn_download: "Download",
-            label_client_url: "Client download link",
-            label_client_version: "Displayed version (optional)",
-            ph_client_url: "https://…/RE9.AP.Client.zip",
-            ph_client_version: "e.g. 1.0.50",
             h_install: "1. Install",
             install_p: "Install <strong>Resident Evil Requiem</strong> via Steam, download the client above, then run <code>RE9.AP.Launcher.exe</code>.",
             install_hint: "The launcher installs REFramework + ArchipelagoRE9 Lua scripts. Restart the game after a patch update.",
-            h_yaml: "2. YAML options",
-            label_slot: "Slot name (16 chars max)",
-            label_description: "Description",
-            label_difficulty: "Difficulty (must match your save)",
-            opt_vanilla: "Vanilla (safe)",
-            btn_generate: "Generate YAML",
-            btn_copy: "Copy",
-            btn_dl_yaml: "Download .yaml",
-            label_preview: "Preview",
-            h_connect: "3. In-game connection",
+            h_connect: "2. In-game connection",
             connect_p: "Generate the multiworld with Archipelago (<strong>Resident Evil Requiem</strong> apworld), then open the RE9 AP UI in-game:",
             connect_hint: "Server · Slot name · Password → <strong>Save and connect</strong>. YAML difficulty must match your save.",
-            h_bug: "4. Bug or problem?",
+            h_bug: "3. Bug or problem?",
             bug_intro: "If you hit a bug, crash, or other issue, please send me your <strong>RE9-bugreport</strong> with a clear description (what you did + what happened).",
             bug_hint: "If possible, attach <code>re2_framework_log.txt</code> (game folder) — lines starting with <code>[RE9 AP]</code>.",
             meta: "Target client folder: <code>Resident Evil 9 AP</code> · AP game: <code>Resident Evil Requiem</code>",
-            toast_gen: "YAML generated for Resident Evil Requiem",
-            toast_copy: "YAML copied",
-            toast_dl: "YAML file downloaded",
         },
     };
 
@@ -579,98 +457,7 @@
         });
     });
 
-    function choiceBlock(selected, options) {
-        return options.map((opt) =>
-            `    ${opt}: ${opt === selected ? 50 : 0}`
-        ).join("\n");
-    }
-
-    function buildYaml() {
-        const name = ($("playerName").value || "Player").trim().slice(0, 16);
-        const description = ($("description").value || "RE9 AP config").trim();
-        const difficulty = $("difficulty").value;
-        const keyItems = $("keyItems").value;
-        const flagItems = $("flagItems").value;
-        let drops = parseInt($("enemyDrops").value, 10);
-        if (Number.isNaN(drops)) drops = 15;
-        drops = Math.max(0, Math.min(50, drops));
-        $("enemyDrops").value = String(drops);
-        const deathLink = $("deathLink").value;
-        const accessibility = $("accessibility").value;
-        const balancing = $("balancing").value;
-
-        return `# Generated for Resident Evil Requiem (RE9 AP)
-name: ${name}
-description: ${description}
-game: Resident Evil Requiem
-requires:
-  version: 0.6.8
-
-Resident Evil Requiem:
-  progression_balancing:
-${choiceBlock(balancing, ["random", "random-low", "random-high", "disabled", "normal", "extreme"])}
-
-  accessibility:
-${choiceBlock(accessibility, ["full", "minimal"])}
-
-  game_difficulty:
-${choiceBlock(difficulty, ["casual", "modern", "classic", "insanity"])}
-
-  key_items:
-${choiceBlock(keyItems, ["vanilla", "shuffled"])}
-
-  flag_items:
-${choiceBlock(flagItems, ["vanilla", "shuffled"])}
-
-  enemy_drops:
-    ${drops}: 50
-
-  death_link:
-    'false': ${deathLink === "false" ? 50 : 0}
-    'true': ${deathLink === "true" ? 50 : 0}
-`;
-    }
-
-    function refresh() {
-        $("preview").value = buildYaml();
-    }
-
-    $("generateBtn").addEventListener("click", () => {
-        refresh();
-        toast(t("toast_gen"));
-    });
-
-    $("copyBtn").addEventListener("click", async () => {
-        refresh();
-        try {
-            await navigator.clipboard.writeText($("preview").value);
-            toast(t("toast_copy"));
-        } catch {
-            $("preview").select();
-            document.execCommand("copy");
-            toast(t("toast_copy"));
-        }
-    });
-
-    $("downloadBtn").addEventListener("click", () => {
-        refresh();
-        const name = ($("playerName").value || "Player").trim().slice(0, 16) || "Player";
-        const blob = new Blob([$("preview").value], { type: "text/yaml;charset=utf-8" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = `${name.replace(/[^\w\-]+/g, "_")}_RE9.yaml`;
-        a.click();
-        URL.revokeObjectURL(a.href);
-        toast(t("toast_dl"));
-    });
-
-    [
-        "playerName", "description", "difficulty", "keyItems", "flagItems",
-        "enemyDrops", "deathLink", "accessibility", "balancing"
-    ].forEach((id) => $(id).addEventListener("input", refresh));
-
     applyLang();
-    refresh();
 })();
 </script>
 </body>
