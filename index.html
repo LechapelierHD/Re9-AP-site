@@ -334,7 +334,7 @@
                 <p data-i18n="source_desc"></p>
                 <p class="hint" id="sourceVersionHint"></p>
             </div>
-            <a class="btn" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
+            <a class="btn" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_github"></a>
         </div>
     </div>
 
@@ -368,8 +368,8 @@
     let toastTimer;
     let lang = localStorage.getItem("re9ap_lang") || "fr";
 
-    const SOURCE_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago/releases/download/v1.0.121/RE9-AP-Source-1.0.121.zip";
-    const SOURCE_VERSION = "1.0.121";
+    const SOURCE_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago";
+    const SOURCE_VERSION = "";
     const CLIENT_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago/releases/download/v1.0.121/RE9-AP-Client-1.0.121.zip";
     const CLIENT_VERSION = "1.0.121";
 
@@ -386,16 +386,17 @@
         fr: {
             title: "RE9 AP — Configuration",
             tagline: "Guide rapide pour le client RE9 Archipelago.",
-            h_source: "Télécharger le source code",
-            source_desc: "Code source Archipelago pour Resident Evil Requiem (Lua, apworld Python, lanceur C#).",
-            hint_source_paste: "Source code non configuré pour le moment.",
-            hint_source_ready: "Clique sur Télécharger pour obtenir le source code.",
+            h_source: "Code source",
+            source_desc: "Lua, apworld Python et lanceur C# du projet, sur GitHub.",
+            hint_source_paste: "Dépôt GitHub non configuré pour le moment.",
+            hint_source_ready: "Le code du projet est sur GitHub.",
             h_download: "Télécharger le client",
             client_desc: "Launcher + scripts Archipelago pour Resident Evil Requiem.",
             hint_paste: "Client non configuré pour le moment.",
             hint_ready: "Clique sur Télécharger pour obtenir le client.",
             hint_version: "Version {v}",
             btn_download: "Télécharger",
+            btn_github: "GitHub",
             h_install: "1. Installation",
             install_p: "Installe <strong>Resident Evil Requiem</strong> via Steam, télécharge le client ci-dessus, puis lance <code>RE9.AP.Launcher.exe</code>.",
             install_hint: "Le launcher pose REFramework + les scripts Lua ArchipelagoRE9. Relance le jeu après une mise à jour de patch.",
@@ -410,16 +411,17 @@
         en: {
             title: "RE9 AP — Setup",
             tagline: "Quick guide for the RE9 Archipelago client.",
-            h_source: "Download the source code",
-            source_desc: "Archipelago source code for Resident Evil Requiem (Lua, Python apworld, C# launcher).",
-            hint_source_paste: "Source code not configured yet.",
-            hint_source_ready: "Click Download to get the source code.",
+            h_source: "Source code",
+            source_desc: "Project Lua, Python apworld, and C# launcher, on GitHub.",
+            hint_source_paste: "GitHub repository not configured yet.",
+            hint_source_ready: "The project source is on GitHub.",
             h_download: "Download the client",
             client_desc: "Launcher + Archipelago scripts for Resident Evil Requiem.",
             hint_paste: "Client not configured yet.",
             hint_ready: "Click Download to get the client.",
             hint_version: "Version {v}",
             btn_download: "Download",
+            btn_github: "GitHub",
             h_install: "1. Install",
             install_p: "Install <strong>Resident Evil Requiem</strong> via Steam, download the client above, then run <code>RE9.AP.Launcher.exe</code>.",
             install_hint: "The launcher installs REFramework + ArchipelagoRE9 Lua scripts. Restart the game after a patch update.",
