@@ -1,445 +1,430 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RE9 AP — Configuration</title>
+    <title>RE9 AP — Setup</title>
+    <meta name="description" content="Resident Evil Requiem Archipelago client — download, install, and join the community.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg0: #0a0c0e;
-            --bg1: #12161a;
-            --bg2: #1a2128;
-            --line: #2a333c;
-            --text: #e8ecef;
-            --muted: #8a969f;
-            --accent: #c9a227;
-            --ok: #3d8f5a;
-            --focus: #d4b84a;
+            --ink: #0d1f24;
+            --ink-soft: #2a4a54;
+            --foam: #dff3f0;
+            --sea: #1a6f7a;
+            --sea-deep: #0b3d46;
+            --matrix: #4ade80;
+            --matrix-dim: #2f9e5f;
+            --line: rgba(16, 36, 44, 0.14);
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
-            min-height: 100vh;
-            color: var(--text);
-            font-family: "IBM Plex Sans", sans-serif;
-            background:
-                radial-gradient(1200px 600px at 10% -10%, rgba(155, 44, 44, 0.22), transparent 55%),
-                radial-gradient(900px 500px at 90% 0%, rgba(201, 162, 39, 0.12), transparent 50%),
-                linear-gradient(180deg, #0d1013 0%, var(--bg0) 40%, #080a0c 100%);
+            color: var(--ink);
+            font-family: "DM Sans", sans-serif;
+            background: linear-gradient(180deg, #e8f6f3 0%, var(--foam) 40%, #d5ece8 100%);
+            line-height: 1.5;
         }
 
-        .wrap {
-            max-width: 720px;
+        a { color: inherit; }
+
+        .site-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(10px);
+            background: rgba(223, 243, 240, 0.9);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .site-nav-inner {
+            width: min(1000px, calc(100% - 2.5rem));
             margin: 0 auto;
-            padding: 48px 20px 72px;
-        }
-
-        .topbar {
             display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
         }
 
-        .lang-tabs {
+        .brand-link {
             display: inline-flex;
-            border: 1px solid var(--line);
-            background: var(--bg1);
+            align-items: center;
+            gap: 0.55rem;
+            margin-right: auto;
+            text-decoration: none;
+            font-family: "Unbounded", sans-serif;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--sea-deep);
         }
 
+        .brand-link img {
+            width: 28px;
+            height: 28px;
+            object-fit: cover;
+            border-radius: 4px;
+            display: block;
+        }
+
+        .lang-tabs { display: inline-flex; gap: 0.15rem; }
         .lang-tabs button {
-            font-family: "Barlow Condensed", sans-serif;
+            font-family: "Unbounded", sans-serif;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.72rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             border: none;
-            padding: 8px 16px;
-            cursor: pointer;
             background: transparent;
-            color: var(--muted);
+            color: var(--ink-soft);
+            padding: 0.55rem 0.7rem;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
         }
-
         .lang-tabs button.active {
-            background: var(--accent);
-            color: #14110a;
+            color: var(--sea-deep);
+            border-bottom-color: var(--matrix-dim);
+        }
+        .lang-tabs button:not(.active):hover { color: var(--sea-deep); }
+
+        .hero {
+            position: relative;
+            min-height: calc(100svh - 58px);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            color: var(--foam);
+            text-align: center;
+            isolation: isolate;
         }
 
-        .lang-tabs button:not(.active):hover {
-            color: var(--text);
-            filter: none;
+        .hero-visual {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse 55% 45% at 50% 40%, rgba(74, 222, 128, 0.12), transparent 60%),
+                radial-gradient(ellipse 40% 35% at 18% 70%, rgba(125, 211, 252, 0.14), transparent 55%),
+                radial-gradient(ellipse 35% 30% at 85% 25%, rgba(58, 168, 181, 0.18), transparent 50%),
+                linear-gradient(165deg, #061820 0%, #0a2f3a 28%, #0d4552 58%, #083038 100%);
+        }
+
+        .mw-sky {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(1.5px 1.5px at 12% 18%, rgba(223, 243, 240, 0.55), transparent),
+                radial-gradient(1.5px 1.5px at 28% 42%, rgba(74, 222, 128, 0.45), transparent),
+                radial-gradient(1px 1px at 63% 28%, rgba(125, 211, 252, 0.5), transparent),
+                radial-gradient(1px 1px at 78% 55%, rgba(223, 243, 240, 0.35), transparent),
+                radial-gradient(1.5px 1.5px at 88% 16%, rgba(74, 222, 128, 0.4), transparent);
+            opacity: 0.85;
+        }
+
+        .mw-map {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+        }
+
+        .hero-content {
+            width: min(920px, calc(100% - 2.5rem));
+            padding: clamp(2.5rem, 7vh, 4.5rem) 0 clamp(3.5rem, 10vh, 6rem);
         }
 
         .hero-logo {
             display: block;
-            width: min(340px, 80vw);
-            max-width: 100%;
+            width: min(260px, 62vw);
             height: auto;
-            aspect-ratio: 1;
-            margin: 8px auto 20px;
-            object-fit: contain;
-            background: #000;
-            filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.65));
+            margin: 0 auto 1.1rem;
+            filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.45));
         }
 
-        .hero-logo-missing {
-            display: none;
-            text-align: center;
-            color: #c45c5c;
-            margin: 0 0 12px;
-            font-size: 0.9rem;
-        }
+        .hero-logo-missing { display: none; color: #f0b4b4; margin: 0 0 1rem; }
 
         .brand {
-            font-family: "Barlow Condensed", sans-serif;
+            margin: 0 0 0.85rem;
+            font-family: "Unbounded", sans-serif;
             font-weight: 800;
-            font-size: clamp(2.6rem, 8vw, 4.2rem);
-            letter-spacing: 0.04em;
+            font-size: clamp(2rem, 6.5vw, 3.8rem);
             line-height: 0.95;
-            text-transform: uppercase;
-            margin: 0 0 8px;
-            color: #f2f4f6;
-            text-align: center;
+            letter-spacing: -0.03em;
         }
 
-        .brand span { color: var(--accent); }
+        .brand span {
+            display: block;
+            margin-top: 0.45rem;
+            font-weight: 500;
+            font-size: 0.36em;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--matrix);
+        }
 
         .tagline {
-            margin: 0 auto 36px;
-            color: var(--muted);
+            margin: 0 auto 1.1rem;
+            max-width: 36ch;
             font-size: 1.05rem;
-            max-width: 40ch;
-            text-align: center;
+            color: rgba(223, 243, 240, 0.78);
         }
 
-        h2 {
-            font-family: "Barlow Condensed", sans-serif;
-            font-weight: 700;
-            font-size: 1.55rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            margin: 36px 0 12px;
-            color: var(--accent);
-        }
+        .visitors { display: flex; justify-content: center; margin: 0 0 1.35rem; }
+        .visitors img { height: 20px; width: auto; }
 
-        .step {
-            background: linear-gradient(180deg, var(--bg2), var(--bg1));
-            border: 1px solid var(--line);
-            border-left: 3px solid var(--accent);
-            padding: 16px 18px;
-            margin: 0 0 12px;
-        }
-
-        .step p {
-            margin: 0;
-            color: var(--text);
-            line-height: 1.5;
-        }
-
-        .step .hint {
-            margin-top: 8px;
-            color: var(--muted);
-            font-size: 0.9rem;
-        }
-
-        label {
-            display: block;
-            margin: 14px 0 6px;
-            font-size: 0.92rem;
-            color: var(--muted);
-        }
-
-        input, select, textarea {
-            width: 100%;
-            background: #0e1216;
-            color: var(--text);
-            border: 1px solid var(--line);
-            padding: 11px 12px;
-            font: inherit;
-            border-radius: 2px;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: 1px solid var(--focus);
-            border-color: var(--focus);
-        }
-
-        .row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        @media (max-width: 560px) {
-            .row { grid-template-columns: 1fr; }
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
-        }
-
-        button {
-            font-family: "Barlow Condensed", sans-serif;
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            border: none;
-            padding: 12px 18px;
-            cursor: pointer;
-            background: var(--accent);
-            color: #14110a;
-        }
-
-        button.secondary {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--line);
-        }
-
-        button:hover { filter: brightness(1.08); }
-        button.secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-        a.btn {
+        .cta { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
+        .cta a, a.btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-family: "Barlow Condensed", sans-serif;
-            font-weight: 700;
-            font-size: 1.15rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+            gap: 0.55rem;
+            min-height: 2.85rem;
+            padding: 0.7rem 1.15rem;
+            border-radius: 4px;
             text-decoration: none;
-            padding: 12px 18px;
-            background: var(--accent);
-            color: #14110a;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.25s var(--ease), background 0.25s ease, border-color 0.25s ease;
+        }
+        .cta a:hover, a.btn:hover { transform: translateY(-2px); }
+
+        .cta .community, a.btn.community {
+            border: 1px solid rgba(74, 222, 128, 0.35);
+            background: rgba(6, 24, 32, 0.72);
+            color: #e8fff2;
+        }
+        .cta .community:hover, a.btn.community:hover {
+            background: rgba(10, 48, 42, 0.9);
+            border-color: rgba(74, 222, 128, 0.7);
         }
 
-        a.btn:hover { filter: brightness(1.08); }
+        a.btn.primary {
+            background: var(--matrix);
+            color: #062016;
+            border: none;
+        }
+        a.btn.primary:hover { background: #6aee98; }
+        a.btn.ghost {
+            border: 1px solid rgba(11, 61, 70, 0.25);
+            background: #fff;
+            color: var(--sea-deep);
+        }
+        a.btn.ghost:hover { border-color: var(--matrix-dim); }
+        a.btn.disabled { pointer-events: none; opacity: 0.45; transform: none; }
 
-        a.btn.disabled {
-            pointer-events: none;
-            opacity: 0.45;
-            filter: none;
+        .discord-icon {
+            width: 18px;
+            height: 18px;
+            object-fit: cover;
+            border-radius: 3px;
         }
 
-        .download-box {
+        main {
+            width: min(860px, calc(100% - 2.5rem));
+            margin: 0 auto;
+            padding: clamp(2.5rem, 6vw, 4rem) 0 3rem;
+        }
+
+        section { margin: 0 0 1rem; }
+        section h2 {
+            margin: 1.75rem 0 0.7rem;
+            font-family: "Unbounded", sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+            letter-spacing: -0.02em;
+            color: var(--sea-deep);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.15rem 1.25rem;
+            box-shadow: 0 10px 30px rgba(11, 61, 70, 0.05);
+        }
+
+        .card p { margin: 0; color: var(--ink); }
+        .card .hint { margin-top: 0.45rem; color: var(--ink-soft); font-size: 0.95rem; }
+        .card code { color: var(--sea); font-size: 0.92em; }
+
+        .row-card {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
+            gap: 1rem;
         }
-
-        .download-box .info {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .download-box .info strong {
+        .row-card .info { flex: 1; min-width: 220px; }
+        .row-card strong {
             display: block;
-            font-family: "Barlow Condensed", sans-serif;
-            font-size: 1.25rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-bottom: 4px;
+            font-family: "Unbounded", sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.25rem;
+            color: var(--sea-deep);
         }
+
+        .meta {
+            margin-top: 2.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            color: var(--ink-soft);
+            font-size: 0.88rem;
+        }
+        .meta code { color: var(--sea); }
 
         .toast {
             position: fixed;
             left: 50%;
             bottom: 24px;
             transform: translateX(-50%) translateY(120%);
-            background: var(--bg2);
-            border: 1px solid var(--ok);
-            color: var(--text);
+            background: var(--sea-deep);
+            color: var(--foam);
             padding: 12px 18px;
+            border-radius: 4px;
             opacity: 0;
             transition: transform 0.35s ease, opacity 0.35s ease;
-            z-index: 20;
+            z-index: 30;
             pointer-events: none;
         }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .meta {
-            margin-top: 40px;
-            padding-top: 16px;
-            border-top: 1px solid var(--line);
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
-
-        .meta code {
-            color: var(--accent);
-            font-size: 0.9em;
-        }
-
-        .visitors {
-            display: flex;
-            justify-content: center;
-            margin: 0 0 28px;
-        }
-
-        .visitors img {
-            height: 20px;
-            width: auto;
-        }
-
-        .top-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 0 0 28px;
-        }
-
-        .top-links a {
-            font-family: "Barlow Condensed", sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            text-decoration: none;
-            padding: 10px 18px;
-            border: 1px solid var(--line);
-            background: var(--bg1);
-            color: var(--text);
-        }
-
-        .top-links a.discord {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #5865F2;
-            border-color: #4752c4;
-            color: #fff;
-        }
-
-        .top-links a:hover {
-            filter: brightness(1.1);
-        }
-
-        .discord-icon {
-            width: 22px;
-            height: 22px;
-            object-fit: contain;
-            border-radius: 4px;
-            flex-shrink: 0;
-            background: #000;
-        }
-
-        .btn.discord {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #5865F2;
-            color: #fff;
-        }
-
-        .btn.discord:hover {
-            filter: brightness(1.08);
-        }
-
-        .btn.discord .discord-icon {
-            width: 20px;
-            height: 20px;
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="topbar">
+<nav class="site-nav" aria-label="Navigation">
+    <div class="site-nav-inner">
+        <a class="brand-link" href="./">
+            <img src="assets/logo.png?v=4" width="28" height="28" alt="">
+            RE9 AP
+        </a>
         <div class="lang-tabs" role="tablist" aria-label="Language">
             <button type="button" role="tab" data-lang="fr" aria-selected="false">FR</button>
             <button type="button" role="tab" data-lang="en" class="active" aria-selected="true">EN</button>
         </div>
     </div>
+</nav>
 
-    <img class="hero-logo" id="heroLogo" src="assets/logo.png?v=4" alt="Resident Evil Requiem AP" width="340" height="340">
-    <p class="hero-logo-missing" id="heroLogoMissing">Logo introuvable : place <code>assets/logo.png</code> à côté de cette page.</p>
-    <h1 class="brand">Resident Evil<br><span>Requiem AP</span></h1>
-    <p class="tagline" data-i18n="tagline"></p>
-    <div class="visitors">
-        <img src="https://visitor-badge.laobi.icu/badge?page_id=Lechapelier&amp;left_text=visitors" alt="visitor badge">
+<header class="hero">
+    <div class="hero-visual" aria-hidden="true">
+        <div class="mw-sky"></div>
+        <svg class="mw-map" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="linkGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#4ade80" stop-opacity="0.15"/>
+                    <stop offset="50%" stop-color="#7dd3fc" stop-opacity="0.55"/>
+                    <stop offset="100%" stop-color="#4ade80" stop-opacity="0.15"/>
+                </linearGradient>
+            </defs>
+            <g fill="none" stroke="url(#linkGrad)" stroke-width="1.5" stroke-dasharray="6 10">
+                <path d="M220 420 C340 280, 420 260, 560 320"/>
+                <path d="M560 320 C700 380, 780 240, 940 300"/>
+                <path d="M320 520 C480 560, 620 480, 760 520"/>
+            </g>
+            <g fill="none">
+                <ellipse cx="220" cy="420" rx="78" ry="34" fill="#0a353e" stroke="#3aa8b5" stroke-width="1.5" opacity="0.9"/>
+                <ellipse cx="560" cy="320" rx="96" ry="42" fill="#0c4550" stroke="#4ade80" stroke-width="1.8" opacity="0.95"/>
+                <ellipse cx="940" cy="300" rx="70" ry="30" fill="#0a353e" stroke="#7dd3fc" stroke-width="1.5" opacity="0.9"/>
+                <ellipse cx="760" cy="520" rx="84" ry="36" fill="#0c4550" stroke="#3aa8b5" stroke-width="1.5" opacity="0.9"/>
+            </g>
+            <g fill="#4ade80">
+                <circle cx="220" cy="420" r="4"/>
+                <circle cx="560" cy="320" r="5"/>
+                <circle cx="940" cy="300" r="4"/>
+                <circle cx="760" cy="520" r="4"/>
+            </g>
+        </svg>
     </div>
-
-    <div class="top-links">
-        <a class="discord" id="discordTopBtn" href="https://lechapelierhd.github.io/synthetic-shores/" target="_blank" rel="noopener noreferrer">
-            <img class="discord-icon" src="assets/discord-logo.jpg?v=1" alt="" width="22" height="22">
-            <span data-i18n="btn_discord"></span>
-        </a>
+    <div class="hero-content">
+        <img class="hero-logo" id="heroLogo" src="assets/logo.png?v=4" alt="Resident Evil Requiem AP" width="260" height="260">
+        <p class="hero-logo-missing" id="heroLogoMissing">Logo introuvable : place assets/logo.png à côté de cette page.</p>
+        <h1 class="brand">Resident Evil<br><span>Requiem AP</span></h1>
+        <p class="tagline" data-i18n="tagline"></p>
+        <div class="visitors">
+            <img src="https://visitor-badge.laobi.icu/badge?page_id=Lechapelier&amp;left_text=visitors" alt="visitor badge">
+        </div>
+        <div class="cta">
+            <a class="community" id="discordTopBtn" href="https://lechapelierhd.github.io/synthetic-shores/" target="_blank" rel="noopener noreferrer">
+                <img class="discord-icon" src="assets/discord-logo.jpg?v=1" alt="" width="18" height="18">
+                <span data-i18n="btn_discord"></span>
+            </a>
+        </div>
     </div>
+</header>
 
-    <h2 data-i18n="h_download"></h2>
-    <div class="step">
-        <div class="download-box">
+<main>
+    <section>
+        <h2 data-i18n="h_download"></h2>
+        <div class="card row-card">
             <div class="info">
                 <strong>RE9 AP Client</strong>
                 <p data-i18n="client_desc"></p>
                 <p class="hint" id="clientVersionHint"></p>
             </div>
-            <a class="btn" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
+            <a class="btn primary" id="clientDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
         </div>
-    </div>
+    </section>
 
-    <h2 data-i18n="h_source"></h2>
-    <div class="step">
-        <div class="download-box">
+    <section>
+        <h2 data-i18n="h_source"></h2>
+        <div class="card row-card">
             <div class="info">
                 <strong>RE9 AP Source code</strong>
                 <p data-i18n="source_desc"></p>
                 <p class="hint" id="sourceVersionHint"></p>
             </div>
-            <a class="btn" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_github"></a>
+            <a class="btn ghost" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_github"></a>
         </div>
-    </div>
+    </section>
 
-    <h2 data-i18n="h_install"></h2>
-    <div class="step">
-        <p data-i18n-html="install_p"></p>
-        <p class="hint" data-i18n="install_hint"></p>
-    </div>
+    <section>
+        <h2 data-i18n="h_install"></h2>
+        <div class="card">
+            <p data-i18n-html="install_p"></p>
+            <p class="hint" data-i18n="install_hint"></p>
+        </div>
+    </section>
 
-    <h2 data-i18n="h_connect"></h2>
-    <div class="step">
-        <p data-i18n-html="connect_p"></p>
-        <p class="hint" data-i18n-html="connect_hint"></p>
-    </div>
+    <section>
+        <h2 data-i18n="h_connect"></h2>
+        <div class="card">
+            <p data-i18n-html="connect_p"></p>
+            <p class="hint" data-i18n-html="connect_hint"></p>
+        </div>
+    </section>
 
-    <h2 data-i18n="h_discord"></h2>
-    <div class="step">
-        <div class="download-box">
+    <section>
+        <h2 data-i18n="h_discord"></h2>
+        <div class="card row-card">
             <div class="info">
                 <strong data-i18n="discord_title"></strong>
                 <p data-i18n="discord_desc"></p>
                 <p class="hint" data-i18n="discord_hint"></p>
             </div>
-            <a class="btn discord" id="discordBtn" href="https://lechapelierhd.github.io/synthetic-shores/" target="_blank" rel="noopener noreferrer">
-                <img class="discord-icon" src="assets/discord-logo.jpg?v=1" alt="" width="20" height="20">
+            <a class="btn community" id="discordBtn" href="https://lechapelierhd.github.io/synthetic-shores/" target="_blank" rel="noopener noreferrer">
+                <img class="discord-icon" src="assets/discord-logo.jpg?v=1" alt="" width="18" height="18">
                 <span data-i18n="btn_discord"></span>
             </a>
         </div>
-    </div>
+    </section>
 
-    <h2 data-i18n="h_bug"></h2>
-    <div class="step">
-        <p data-i18n-html="bug_intro"></p>
-        <p class="hint" data-i18n-html="bug_hint"></p>
-    </div>
+    <section>
+        <h2 data-i18n="h_bug"></h2>
+        <div class="card">
+            <p data-i18n-html="bug_intro"></p>
+            <p class="hint" data-i18n-html="bug_hint"></p>
+        </div>
+    </section>
 
     <p class="meta" data-i18n-html="meta"></p>
-</div>
+</main>
 
 <div class="toast" id="toast" role="status"></div>
 
@@ -486,13 +471,13 @@
             h_connect: "2. Connexion in-game",
             connect_p: "Génère le multiworld avec Archipelago (apworld <strong>Resident Evil Requiem</strong>), puis dans le jeu ouvre l’UI RE9 AP :",
             connect_hint: "Serveur · Nom du slot · Mot de passe → <strong>Enregistrer et connecter</strong>. La difficulté YAML doit être celle de ta save.",
-            h_discord: "Discord",
-            discord_title: "Serveur Discord RE9 AP",
-            discord_desc: "Annonces, aide, bugs et multiworld — tout se passe sur Discord.",
+            h_discord: "Communauté",
+            discord_title: "Synthorium",
+            discord_desc: "Annonces, aide, bugs et multiworld — tout se passe sur la communauté.",
             discord_hint: "Les messages privés sont limités : utilise le serveur pour discuter.",
             btn_discord: "Rejoindre la communauté",
             h_bug: "3. Bug ou problème ?",
-            bug_intro: "En cas de bug, crash ou autre problème, postez sur le <strong>Discord</strong> avec votre <strong>RE9-bugreport</strong> et une description claire (ce que vous avez fait + ce qui s’est passé).",
+            bug_intro: "En cas de bug, crash ou autre problème, postez sur la <strong>communauté</strong> avec votre <strong>RE9-bugreport</strong> et une description claire (ce que vous avez fait + ce qui s’est passé).",
             bug_hint: "Joignez si possible le journal <code>re2_framework_log.txt</code> (dossier du jeu) — lignes <code>[RE9 AP]</code>. Serveur : <a href=\"https://lechapelierhd.github.io/synthetic-shores/\" target=\"_blank\" rel=\"noopener noreferrer\">Synthetic Shores</a>.",
             meta: "Client cible : dossier <code>Resident Evil 9 AP</code> · jeu AP : <code>Resident Evil Requiem</code>",
         },
@@ -516,13 +501,13 @@
             h_connect: "2. In-game connection",
             connect_p: "Generate the multiworld with Archipelago (<strong>Resident Evil Requiem</strong> apworld), then open the RE9 AP UI in-game:",
             connect_hint: "Server · Slot name · Password → <strong>Save and connect</strong>. YAML difficulty must match your save.",
-            h_discord: "Discord",
-            discord_title: "RE9 AP Discord server",
-            discord_desc: "Announcements, help, bugs, and multiworld — everything happens on Discord.",
+            h_discord: "Community",
+            discord_title: "Synthorium",
+            discord_desc: "Announcements, help, bugs, and multiworld — everything happens in the community.",
             discord_hint: "DMs are limited: use the server to talk.",
             btn_discord: "Join the community",
             h_bug: "3. Bug or problem?",
-            bug_intro: "If you hit a bug, crash, or other issue, post on <strong>Discord</strong> with your <strong>RE9-bugreport</strong> and a clear description (what you did + what happened).",
+            bug_intro: "If you hit a bug, crash, or other issue, post in the <strong>community</strong> with your <strong>RE9-bugreport</strong> and a clear description (what you did + what happened).",
             bug_hint: "If possible, attach <code>re2_framework_log.txt</code> (game folder) — lines starting with <code>[RE9 AP]</code>. Server: <a href=\"https://lechapelierhd.github.io/synthetic-shores/\" target=\"_blank\" rel=\"noopener noreferrer\">Synthetic Shores</a>.",
             meta: "Target client folder: <code>Resident Evil 9 AP</code> · AP game: <code>Resident Evil Requiem</code>",
         },
@@ -535,23 +520,17 @@
     function applyLang() {
         document.documentElement.lang = lang;
         document.title = t("title");
-
         document.querySelectorAll("[data-i18n]").forEach((el) => {
             el.textContent = t(el.getAttribute("data-i18n"));
         });
         document.querySelectorAll("[data-i18n-html]").forEach((el) => {
             el.innerHTML = t(el.getAttribute("data-i18n-html"));
         });
-        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-            el.placeholder = t(el.getAttribute("data-i18n-placeholder"));
-        });
-
         document.querySelectorAll(".lang-tabs button").forEach((btn) => {
             const active = btn.getAttribute("data-lang") === lang;
             btn.classList.toggle("active", active);
             btn.setAttribute("aria-selected", active ? "true" : "false");
         });
-
         syncClientDownload();
         syncSourceDownload();
         ["discordBtn", "discordTopBtn"].forEach((id) => {
@@ -575,26 +554,19 @@
         const cleanUrl = (url || "").trim();
         const cleanVersion = (version || "").trim();
         const valid = /^https?:\/\//i.test(cleanUrl);
-
         btn.href = valid ? cleanUrl : "#";
         btn.classList.toggle("disabled", !valid);
-        if (!valid) {
-            hint.textContent = t(pasteKey);
-        } else if (cleanVersion) {
-            hint.textContent = t("hint_version").replace("{v}", cleanVersion);
-        } else {
-            hint.textContent = t(readyKey);
-        }
+        if (!valid) hint.textContent = t(pasteKey);
+        else if (cleanVersion) hint.textContent = t("hint_version").replace("{v}", cleanVersion);
+        else hint.textContent = t(readyKey);
     }
 
     function syncSourceDownload() {
-        syncDownload("sourceDownloadBtn", "sourceVersionHint", SOURCE_DOWNLOAD_URL, SOURCE_VERSION,
-            "hint_source_paste", "hint_source_ready");
+        syncDownload("sourceDownloadBtn", "sourceVersionHint", SOURCE_DOWNLOAD_URL, SOURCE_VERSION, "hint_source_paste", "hint_source_ready");
     }
 
     function syncClientDownload() {
-        syncDownload("clientDownloadBtn", "clientVersionHint", CLIENT_DOWNLOAD_URL, CLIENT_VERSION,
-            "hint_paste", "hint_ready");
+        syncDownload("clientDownloadBtn", "clientVersionHint", CLIENT_DOWNLOAD_URL, CLIENT_VERSION, "hint_paste", "hint_ready");
     }
 
     document.querySelectorAll(".lang-tabs button").forEach((btn) => {
@@ -605,6 +577,7 @@
     });
 
     applyLang();
+    void toast;
 })();
 </script>
 </body>
