@@ -128,12 +128,63 @@
             opacity: 0.85;
         }
 
+        .mw-sky { animation: star-twinkle 6s ease-in-out infinite alternate; }
+
         .mw-map {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             opacity: 0.85;
+        }
+
+        .mw-links path { animation: link-flow 8s linear infinite; }
+        .mw-links path:nth-child(2) { animation-duration: 11s; animation-direction: reverse; }
+        .mw-links path:nth-child(3) { animation-duration: 9s; }
+
+        .mw-portals circle {
+            transform-origin: center;
+            transform-box: fill-box;
+            animation: portal-pulse 5s var(--ease) infinite;
+        }
+        .mw-portals circle:nth-child(2) { animation-delay: 0.6s; }
+        .mw-portals circle:nth-child(3) { animation-delay: 1.2s; }
+        .mw-portals circle:nth-child(4) { animation-delay: 1.8s; }
+
+        .mw-nodes circle { animation: node-glow 3.2s ease-in-out infinite alternate; }
+        .mw-nodes circle:nth-child(odd) { animation-delay: 0.8s; }
+
+        .mw-islands ellipse {
+            transform-origin: center;
+            transform-box: fill-box;
+            animation: island-drift 14s var(--ease) infinite alternate;
+        }
+        .mw-islands ellipse:nth-child(2) { animation-duration: 18s; animation-delay: 1s; }
+        .mw-islands ellipse:nth-child(3) { animation-duration: 16s; animation-delay: 2s; }
+        .mw-islands ellipse:nth-child(4) { animation-duration: 20s; animation-delay: 0.5s; }
+
+        .hero-logo { animation: logo-float 5.5s var(--ease) infinite; }
+
+        @keyframes logo-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes link-flow { to { stroke-dashoffset: -120; } }
+        @keyframes portal-pulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.55; }
+        }
+        @keyframes node-glow {
+            from { opacity: 0.45; }
+            to { opacity: 1; }
+        }
+        @keyframes island-drift {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        @keyframes star-twinkle {
+            from { opacity: 0.55; }
+            to { opacity: 0.95; }
         }
 
         .hero-content {
@@ -323,18 +374,24 @@
                     <stop offset="100%" stop-color="#4ade80" stop-opacity="0.15"/>
                 </linearGradient>
             </defs>
-            <g fill="none" stroke="url(#linkGrad)" stroke-width="1.5" stroke-dasharray="6 10">
+            <g class="mw-links" fill="none" stroke="url(#linkGrad)" stroke-width="1.5" stroke-dasharray="6 10">
                 <path d="M220 420 C340 280, 420 260, 560 320"/>
                 <path d="M560 320 C700 380, 780 240, 940 300"/>
                 <path d="M320 520 C480 560, 620 480, 760 520"/>
             </g>
-            <g fill="none">
+            <g class="mw-islands" fill="none">
                 <ellipse cx="220" cy="420" rx="78" ry="34" fill="#0a353e" stroke="#3aa8b5" stroke-width="1.5" opacity="0.9"/>
                 <ellipse cx="560" cy="320" rx="96" ry="42" fill="#0c4550" stroke="#4ade80" stroke-width="1.8" opacity="0.95"/>
                 <ellipse cx="940" cy="300" rx="70" ry="30" fill="#0a353e" stroke="#7dd3fc" stroke-width="1.5" opacity="0.9"/>
                 <ellipse cx="760" cy="520" rx="84" ry="36" fill="#0c4550" stroke="#3aa8b5" stroke-width="1.5" opacity="0.9"/>
             </g>
-            <g fill="#4ade80">
+            <g class="mw-portals" fill="none" stroke="#4ade80" stroke-width="2">
+                <circle cx="560" cy="320" r="58" opacity="0.35"/>
+                <circle cx="560" cy="320" r="72" opacity="0.18"/>
+                <circle cx="940" cy="300" r="42" opacity="0.28" stroke="#7dd3fc"/>
+                <circle cx="220" cy="420" r="48" opacity="0.22"/>
+            </g>
+            <g class="mw-nodes" fill="#4ade80">
                 <circle cx="220" cy="420" r="4"/>
                 <circle cx="560" cy="320" r="5"/>
                 <circle cx="940" cy="300" r="4"/>
