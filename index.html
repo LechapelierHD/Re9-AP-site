@@ -438,8 +438,17 @@
             </div>
             <a class="btn ghost" id="sourceDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_github"></a>
         </div>
+        <section>
+        <h2 data-i18n="h_patch"></h2>
+        <div class="card row-card">
+            <div class="info">
+                <strong>RE9 AP Patch</strong>
+                <p data-i18n="patch_desc"></p>
+                <p class="hint" id="patchVersionHint"></p>
+            </div>
+            <a class="btn ghost" id="patchDownloadBtn" href="#" target="_blank" rel="noopener noreferrer" data-i18n="btn_download"></a>
+        </div>
     </section>
-
     <section>
         <h2 data-i18n="h_install"></h2>
         <div class="card">
@@ -495,6 +504,8 @@
     const SOURCE_VERSION = "2.1.42";
     const CLIENT_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago/releases/download/v2.1.42/RE9-AP-Client-2.1.42.zip";
     const CLIENT_VERSION = "2.1.42";
+    const PATCH_DOWNLOAD_URL = "https://github.com/LechapelierHD/Re9-archipelago/releases/download/v2.1.42/re9ap_patch_2.1.42.zip";
+    const PATCH_VERSION = "2.1.42";
     const DISCORD_URL = "https://lechapelierhd.github.io/synthetic-shores/";
 
     const heroLogo = $("heroLogo");
@@ -518,6 +529,10 @@
             client_desc: "Launcher + scripts Archipelago pour Resident Evil Requiem.",
             hint_paste: "Client non configuré pour le moment.",
             hint_ready: "Clique sur Télécharger pour obtenir le client.",
+            h_patch: "Mise à jour (patch)",
+            patch_desc: "Pour une install déjà en place : place le zip dans le dossier Patchs du lanceur, ou utilise l’onglet Mises à jour.",
+            hint_patch_paste: "Patch non configuré.",
+            hint_patch_ready: "Patch 2.1.42 — lanceur YAML + softlock-safe + shop AP retiré.",
             hint_version: "Version {v}",
             btn_download: "Télécharger",
             btn_github: "GitHub",
@@ -548,6 +563,10 @@
             client_desc: "Launcher + Archipelago scripts for Resident Evil Requiem.",
             hint_paste: "Client not configured yet.",
             hint_ready: "Click Download to get the client.",
+            h_patch: "Update (patch)",
+            patch_desc: "Already installed? Drop the zip into the launcher Patchs folder, or use the Updates tab.",
+            hint_patch_paste: "Patch not configured.",
+            hint_patch_ready: "Patch 2.1.42 — YAML launcher + softlock-safe + shop AP removed.",
             hint_version: "Version {v}",
             btn_download: "Download",
             btn_github: "GitHub",
@@ -589,6 +608,7 @@
         });
         syncClientDownload();
         syncSourceDownload();
+        syncPatchDownload();
         ["discordBtn", "discordTopBtn"].forEach((id) => {
             const a = $(id);
             if (a) a.href = DISCORD_URL;
@@ -623,6 +643,10 @@
 
     function syncClientDownload() {
         syncDownload("clientDownloadBtn", "clientVersionHint", CLIENT_DOWNLOAD_URL, CLIENT_VERSION, "hint_paste", "hint_ready");
+    }
+
+    function syncPatchDownload() {
+        syncDownload("patchDownloadBtn", "patchVersionHint", PATCH_DOWNLOAD_URL, PATCH_VERSION, "hint_patch_paste", "hint_patch_ready");
     }
 
     document.querySelectorAll(".lang-tabs button").forEach((btn) => {
